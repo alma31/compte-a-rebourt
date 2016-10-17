@@ -1,8 +1,10 @@
 (function(){
 	app = {
-		timer:10,
+		defaultTimer:10,
+		timer:null,
 		intervalID:null,
 		init: function(){
+			app.timer = app.defaultTimer;
 			app.listeners();
 		},
 		listeners: function(){
@@ -11,13 +13,16 @@
 			$('.reset').on('click', app.reset);
 		},
 		play: function(){
+			clearInterval(app.intervalID);
 			app.intervalID = setInterval(app.decrement, 1000);
+
 		},
 		decrement:function(){
 			app.timer--;
 			app.updateView();
-			if(app.timer===0){
-				clearInterval(app.intervalID);
+			if(app.timer <= 0){
+				app.timer = 1;
+             
 			}
 		},
 		updateView: function(){
@@ -25,9 +30,11 @@
 			var secondes = app.timer % 60;
 			$("#minutes").text(minutes);
 			$("#secondes").text(secondes);
+
 		},
 		reset: function(){
-			app.timer = 10;
+            app.timer = app.defaultTimer;
+            app.updateView();   
 		},
 		stop: function(){
 			clearInterval(app.intervalID);
