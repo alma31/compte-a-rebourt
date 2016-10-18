@@ -8,13 +8,18 @@
 <body>
 
 	<div class="count center">
-		<span id="minutes">0</span> : <span id="secondes">0</span>
+		<span id="minutes">00</span> : <span id="secondes">00</span>
 	</div>
 
 	<div class="btn">
-		<button class="stop">Stop Here</button>
-		<button class="play">Play Here</button>
-		<button class="reset">Reset</button>
+		<button id="stop" data-btn="btn">Stop Here</button>
+		<button id="play" data-btn="btn">Play Here</button>
+		<button id="reset" data-btn="btn">Reset</button>
+		<button id="save" data-btn="btn">Sauvegarder</button>
+	</div>
+	<div class="inp">
+		<input id="min" placeholder="minutes">
+		<input id="sec" placeholder="secondes">
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script type="text/javascript" src="countdown.js"></script>

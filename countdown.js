@@ -1,40 +1,61 @@
+"use strict";
 (function(){
-app={
-		defaultTimer:10,
+var app = {
+	    defaultTimer:null,
 		timer:null,
 		intervalID:null,
 		init: function(){
-				app.timer = app.defaultTimer;
-				app.listeners();
+				this.timer = this.defaultTimer;
+				this.listeners();
 		},
 		listeners: function(){
-				$(".play").on('click', app.play);
-				$(".stop").on('click', app.stop);
-				$('.reset').on('click', app.reset);
+				$("#play").on('click', this.play.bind(this));
+				$("#stop").on('click', this.stop.bind(this));
+				$('#reset').on('click', this.reset.bind(this));
+				$('#save').on('click', this.save.bind(this));
 		},
 		play: function(){
-				clearInterval(app.intervalID);
-				app.intervalID = setInterval(app.decrement, 1000);
+				this.stop();
+				this.intervalID = setInterval(this.decrement.bind(this), 1000);
 		},
+
+        save: function(){
+             var min =  parseInt($('#min').val(),10);
+             var sec =  parseInt($('#sec').val(),10);
+			  $('#minutes').html(min);
+			  $('#secondes').html(sec);
+			if ( isNaN(min)  ) {
+				min = 0;
+			}
+			if ( isNaN(sec) ){
+				sec = 0;
+			}
+			  this.timer = min*60 + sec;
+        },
 		decrement:function(){
-				app.timer--;
-				app.updateView();
-				if(app.timer <= 0){
-					app.timer = 1;}
+				this.timer--;
+				this.updateView();
+				if(this.timer <= 0){
+					this.timer = 1;}
 		},
 		updateView: function(){
-				var minutes = parseInt(app.timer/60, 10);
-				var secondes = app.timer % 60;
+				var minutes = parseInt(this.timer/60, 10);
+				var secondes = parseInt(this.timer % 60);
 				$("#minutes").text(minutes);
 				$("#secondes").text(secondes);
-
+				if ( secondes < 10) {
+					$('#secondes').html("0"+secondes);
+				};
+				if ( minutes < 10) {
+					$('#minutes').html("0"+minutes);
+				};
 		},
 		reset: function(){
-				app.timer = app.defaultTimer;
-				app.updateView();   
+			    this.init();
+				this.updateView();   
 		},
 		stop: function(){
-				clearInterval(app.intervalID);
+				clearInterval(this.intervalID);
 		},
 	};
 app.init();
