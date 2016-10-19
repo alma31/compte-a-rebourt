@@ -8,19 +8,21 @@
 <body>
 
 	<div class="count center">
-		<span id="minutes">00</span> : <span id="secondes">00</span>
+		<span id="minutes">00</span><span>:</span><span id="secondes">00</span>
 	</div>
 
+	<div class="inp">
+		<input type="number" id="min" placeholder="minutes">
+		<br>
+		<input type="number" id="sec" placeholder="secondes">
+	</div>
 	<div class="btn">
 		<button id="stop" data-btn="btn">Stop Here</button>
 		<button id="play" data-btn="btn">Play Here</button>
 		<button id="reset" data-btn="btn">Reset</button>
 		<button id="save" data-btn="btn">Save</button>
 	</div>
-	<div class="inp">
-		<input type="number" id="min" placeholder="minutes">
-		<input type="number" id="sec" placeholder="secondes">
-	</div>
+	<img id="fumé" src="http://rosatubes.r.o.pic.centerblog.net/7a71af63.png">
 	<progress max="100"></progress>
 	<div id="video"><iframe width="1520" height="720" src="https://www.youtube.com/embed/LxuGukuDRgk?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1" frameborder="0" allowfullscreen></iframe></div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

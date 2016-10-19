@@ -48,9 +48,14 @@
 			if ( minutes < 10) {
 				$('#minutes').html("0"+minutes);
 			}
+			if(minutes == 0 && secondes == 10){
+				$('span').css('color','red');
+				$('span').css('color','red');
+			}
 			if(secondes == 0 && minutes == 0){
 				this.stop();
 			}
+
 		},
 		reset: function(){
 			this.save();
