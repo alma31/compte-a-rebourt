@@ -16,6 +16,7 @@
 		},
 		play: function(){
 			this.intervalID = setInterval(this.decrement.bind(this), 1000);
+			
 
 		},
 		save: function(){
@@ -51,6 +52,7 @@
 			if(minutes == 0 && secondes == 10){
 				$('span').css('color','red');
 				$('span').css('color','red');
+			
 			}
 			if(secondes == 0 && minutes == 0){
 				this.stop();
@@ -73,6 +75,7 @@
             $('progress').val(pourcentage);
             console.log(this.defaultTimer,this.timer,pourcentage);    
         },
+
 	};
 	app.init();
 })();
