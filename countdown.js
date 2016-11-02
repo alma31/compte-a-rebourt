@@ -6,9 +6,8 @@
 		intervalID:null,
 		minutes:null,
 		secondes:null,
-
 		init: function(){
-            this.cacher();
+			this.cacher();
 			this.listeners();
 		},
 		listeners: function(){
@@ -21,8 +20,7 @@
 			clearInterval(this.intervalID);
 			this.intervalID = setInterval(this.decrement.bind(this), 1000);
 			if (this.minutes == 0 && this.secondes == 0)
-				clearInterval(this.intervalID);
-			
+				clearInterval(this.intervalID);	
 		},
 		save: function(){
 			$("#play").show();
@@ -65,7 +63,6 @@
 			if(this.secondes == 0 && this.minutes == 0){
 				this.video();
 			}
-
 		},
 		reset: function(){
 			this.save();
@@ -84,7 +81,7 @@
 		},
 
 		cacher: function(){
-		    $("#reset").hide();
+			$("#reset").hide();
 			$('iframe').hide();
 			$("#play").hide();
 			$("#stop").hide();
