@@ -4,8 +4,11 @@
 		defaultTimer:null,
 		timer:null,
 		intervalID:null,
+		minutes:null,
+		secondes:null,
+
 		init: function(){
-			$('iframe').hide();
+            this.cacher();
 			this.listeners();
 		},
 		listeners: function(){
@@ -15,11 +18,16 @@
 			$('#save').on('click', this.save.bind(this));
 		},
 		play: function(){
+			clearInterval(this.intervalID);
 			this.intervalID = setInterval(this.decrement.bind(this), 1000);
+			if (this.minutes == 0 && this.secondes == 0)
+				clearInterval(this.intervalID);
 			
-
 		},
 		save: function(){
+			$("#play").show();
+			$("#stop").show();
+			$("#reset").show();
 			var min =  parseInt($('#min').val(),10);
 			var sec =  parseInt($('#sec').val(),10);
 			$('#minutes').html(min);
@@ -39,23 +47,23 @@
 			this.progress();
 		},
 		updateView: function(){
-			var minutes = parseInt(this.timer/60, 10);
-			var secondes = parseInt(this.timer % 60);
-			$("#minutes").text(minutes);
-			$("#secondes").text(secondes);
-			if ( secondes < 10) {
-				$('#secondes').html("0"+secondes);
+			this.minutes = parseInt(this.timer/60, 10);
+			this.secondes = parseInt(this.timer % 60);
+			$("#minutes").text(this.minutes);
+			$("#secondes").text(this.secondes);
+			if ( this.secondes < 10) {
+				$('#secondes').html("0"+this.secondes);
 			}
-			if ( minutes < 10) {
-				$('#minutes').html("0"+minutes);
+			if ( this.minutes < 10) {
+				$('#minutes').html("0"+this.minutes);
 			}
-			if(minutes == 0 && secondes == 10){
+			if(this.minutes == 0 && this.secondes == 10){
 				$('span').css('color','red');
 				$('span').css('color','red');
-			
+
 			}
-			if(secondes == 0 && minutes == 0){
-				this.stop();
+			if(this.secondes == 0 && this.minutes == 0){
+				this.video();
 			}
 
 		},
@@ -65,17 +73,22 @@
 		},
 		stop: function(){
 			clearInterval(this.intervalID);
-			this.video();
 		},
 		video: function(){ 
 			$('body').html($('iframe').show('#video'));	
 		},
-        progress: function(){
-            var pourcentage = this.timer*100/this.defaultTimer;
-            $('progress').val(pourcentage);
-            console.log(this.defaultTimer,this.timer,pourcentage);    
-        },
+		progress: function(){
+			var pourcentage = this.timer*100/this.defaultTimer;
+			$('progress').val(pourcentage);
+			console.log(this.defaultTimer,this.timer,pourcentage);    
+		},
 
+		cacher: function(){
+		    $("#reset").hide();
+			$('iframe').hide();
+			$("#play").hide();
+			$("#stop").hide();
+		},
 	};
 	app.init();
 })();
