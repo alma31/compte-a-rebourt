@@ -79,8 +79,7 @@
 		},
 		progress: function(){
 			var pourcentage = this.timer*100/this.defaultTimer;
-			$('progress').val(pourcentage);
-			console.log(this.defaultTimer,this.timer,pourcentage);    
+			$('progress').val(pourcentage);  
 		},
 
 		cacher: function(){
